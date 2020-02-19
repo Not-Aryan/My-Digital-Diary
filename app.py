@@ -8,7 +8,7 @@ from flask_moment import Moment
 from datetime import datetime
 
 app = Flask("My-Digital-Diary")
-app.config["MONGO_URI"] = "cluster0-shard-00-00-y36ty.mongodb.net:27017"
+app.config["MONGO_URI"] = "mongodb+srv://user:password321@cluster0-y36ty.mongodb.net/test?retryWrites=true&w=majority"
 app.config['SECRET_KEY'] = 'abc'
 moment = Moment(app)
 
