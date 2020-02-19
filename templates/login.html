@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My-Digital-Diary</title>
+</head>
+<body>
+{% extends 'bootstrap/base.html' %}
+
+
+{% block title %}
+
+User Login
+
+{% endblock %}
+
+{% block content%}
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container container-fluid">
+    <h1 class="display-4">User Login</h1>
+    <p class="lead">No account? <a href="/">Click here</a></p>
+  </div>
+</div>
+
+
+<div class="container text-center">
+    {% for message in get_flashed_messages() %}
+        <p>{{message}}</p>
+    {% endfor %}
+</div>
+
+<form method="POST" action="" class="text-center border border-light p-5">
+    <input class="form-control" type="text" name = "login-email" placeholder="Email">
+    <input class="form-control" type="text" name = "login-password" placeholder="Password">
+    <button type="submit" class="btn btn-info btn-block my-4">Login</button>
+</form>
+
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My-Digital-Diary</title>
+</head>
+<body>
+{% extends 'bootstrap/base.html' %}
+
+
+{% block scripts %}
+    {{super()}}
+    {{ moment.include_moment()}}
+{% endblock %}
+
+{% block content%}
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container container-fluid">
+      <div class="row">
+          <div class="col-md-6">
+              <h1 class="display-4">Welcome {{session['user-info']['firstName']}}</h1>
+              <p class="lead">{{session['user-info']['lastName']}}'s diary</p>
+          </div>
+          <div class="col-md-6 text-right">
+              <p class="lead">Login time: {{ moment(session['user-info']['loginTime']).format('h.mm A') }}</p>
+              <button><a href="/logout">Not {{session['user-info']['email']}}?</a></button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="container">
+    <form action="" method="POST">
+        <textarea name="content" rows="3" class="form-control" style="resize:none; margin-bottom: 1em;"></textarea>
+        <input type="submit" value="Save" class="btn btn-success" style="margin-bottom: 1em;">
+    </form>
+    {% for entry in entries %}
+        <b>{{ moment(entry['time']).format('LLL') }}</b>
+        <b>- {{ moment(entry['time']).fromNow() }}</b>
+        <h5>{{ entry['content'] }}</h5>
+    {% endfor %}
+</div>
+<!--<div class="container text-center">-->
+<!--    {% for message in get_flashed_messages() %}-->
+<!--        <p>{{message}}</p>-->
+<!--    {% endfor %}-->
+<!--</div>-->
+
+{% endblock %}
+</body>
+</html>
